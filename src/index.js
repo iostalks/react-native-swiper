@@ -283,8 +283,9 @@ export default class extends Component {
       initState.height = height
     }
 
+    const initIndex = props.loop ? props.index + 1 : props.index
     initState.offset[initState.dir] =
-      initState.dir === 'y' ? initState.height * props.index : initState.width * props.index
+      initState.dir === 'y' ? initState.height * initIndex : initState.width * initIndex
 
     this.internals = {
       ...this.internals,
@@ -569,7 +570,7 @@ export default class extends Component {
       return
 
     const state = this.state
-    const diff = this.state.index + (index - this.state.index)
+    const diff = this.props.loop ? index + 1 : index
 
     let x = 0
     let y = 0
